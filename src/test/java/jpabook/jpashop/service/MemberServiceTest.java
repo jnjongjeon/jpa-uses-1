@@ -7,11 +7,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
-
-import static org.junit.Assert.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -42,7 +39,6 @@ public class MemberServiceTest {
         //given
         Member member1 = new Member();
         member1.setName("kim1");
-
         Member member2 = new Member();
         member2.setName("kim1");
 
@@ -54,6 +50,8 @@ public class MemberServiceTest {
         //then
         Assertions.fail("예외가 발생해야 한다");
 
+        Member member = new Member();
+        member.setName("알로하");
     }
 
 }
