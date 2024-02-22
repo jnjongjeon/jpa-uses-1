@@ -3,7 +3,6 @@ package jpabook.jpashop.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +33,7 @@ public class Order {
     private LocalDateTime orderDate; //주문시간
 
     @Enumerated(EnumType.STRING)
-    private orderStatus status; //주문상테 [ORDER, CANCEL]
+    private OrderStatus status; //주문상테 [ORDER, CANCEL]
 
     ///연관관계 메서드
     public void setMember(Member member) {
@@ -61,7 +60,7 @@ public class Order {
             order.addOrderItem(orderItem);
         }
 
-        order.setStatus(orderStatus.ORDER);
+        order.setStatus(OrderStatus.ORDER);
         order.setOrderDate(LocalDateTime.now());
         return order;
     }
@@ -77,7 +76,7 @@ public class Order {
             throw new IllegalStateException("이미 배송완료 된 상품은 취소가 불가능합니다.");
         }
 
-        this.setStatus(orderStatus.CANCEL);
+        this.setStatus(OrderStatus.CANCEL);
         for (OrderItem orderItem : orderItems) {
             orderItem.cancel();
         }
